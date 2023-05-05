@@ -2,6 +2,8 @@ FROM ruby:latest
 
 ARG RUBYGEMS_VERSION=3.4.6
 
+ENV TZ Asia/Tokyo
+
 RUN mkdir /api
 
 WORKDIR /api
