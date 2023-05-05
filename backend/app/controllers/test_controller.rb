@@ -1,0 +1,5 @@
+class TestController < ApplicationController
+  def index
+    render json: { status: 200, message: "Hello World from Rails!"}
+  end
+end
