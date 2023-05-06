@@ -4,12 +4,14 @@ import { LoginContext } from './providers/LoginProvider'
 
 const Dashboard = () => {
 
-  const { loggedInStatus, setLoggedInStatus } = useContext(LoginContext);
+  const { loggedInStatus, user } = useContext(LoginContext);
 
   return (
     <>
       <h1>Dashboard</h1>
       <h2>ログイン状態: {loggedInStatus ? 'ログイン済' : '未ログイン'}</h2>
+      <h2>id: {user.id ? user.id : '不明'}</h2>
+      <h2>email: {user.email ? user.email : '不明'}</h2>
     </>
   )
 }
