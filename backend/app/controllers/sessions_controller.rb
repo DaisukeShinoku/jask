@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :current_user
+
   def login
     @user = User.find_by(email: session_params[:email])
 
