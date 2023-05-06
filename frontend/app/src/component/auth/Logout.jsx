@@ -17,7 +17,7 @@ const Logout = () => {
     ).then(response => {
       console.log('ログアウト成功', response)
       setLoggedInStatus(false)
-      navigate('/')
+      navigate('/start')
     }).catch(error => {
       console.log('logout error', error)
     })

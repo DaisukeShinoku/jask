@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
-import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 
-import Home from './component/Home'
+import Start from './component/Start'
 import Dashboard from './component/Dashboard'
 import Test from './component/Test'
 
@@ -11,9 +11,11 @@ import axios from 'axios'
 
 const App = () => {
 
+  const location = useLocation();
+
   const { loggedInStatus, setLoggedInStatus, setUser } = useContext(LoginContext);
 
-  const checkLoginStatus = () => {
+  const checkLoginStatus = (path) => {
     axios.get("http://localhost:3001/logged_in", { withCredentials: true })
       .then(response => {
         if (response.data.logged_in && loggedInStatus === false) {
@@ -23,24 +25,26 @@ const App = () => {
           setLoggedInStatus(false)
           setUser({})
         }
+
+        if(path === '/' && !loggedInStatus) {
+          document.location = '/start'
+        }
       }).catch(error => {
         console.log('ログインエラー', error)
     })
   }
 
   useEffect(() => {
-    checkLoginStatus()
+    checkLoginStatus(location.pathname)
   })
 
   return (
     <>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/dashboard' element={<Dashboard />} />
-          <Route path='/test' element={<Test title={'This is Test'}/>} />
-        </Routes>
-      </BrowserRouter>
+      <Routes>
+        <Route path='/start' element={<Start />} />
+        <Route path='/' element={<Dashboard />} />
+        <Route path='/test' element={<Test title={'This is Test'}/>} />
+      </Routes>
     </>
   )
 }

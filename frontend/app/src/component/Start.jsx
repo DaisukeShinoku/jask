@@ -6,19 +6,27 @@ import Logout from './auth/Logout'
 
 import { LoginContext } from './providers/LoginProvider'
 
-const Home = () => {
+const Start = () => {
 
-  const { loggedInStatus } = useContext(LoginContext);
+  const { loggedInStatus } = useContext(LoginContext)
 
   return (
     <>
       <h1>Home</h1>
       <h2>ログイン状態: {loggedInStatus ? 'ログイン済' : '未ログイン'}</h2>
-      <Registration />
-      <Login />
-      <Logout />
+      {loggedInStatus ?
+      <>
+        <Logout />
+      </>
+      :
+      <>
+        <Registration />
+        <Login />
+      </>
+      }
+      
     </>
   )
 }
 
-export default Home
+export default Start

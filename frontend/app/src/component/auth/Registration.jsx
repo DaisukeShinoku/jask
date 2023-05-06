@@ -31,7 +31,7 @@ const Registration = () => {
       if(response.data.status === 'created') {
         setLoggedInStatus(true)
         setUser(response.data.user)
-        navigate('/dashboard')
+        navigate('/')
       }
     }).catch(error => {
       console.log("registration error", error)
