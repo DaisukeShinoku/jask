@@ -14,9 +14,17 @@ const Start = () => {
     <>
       <h1>Home</h1>
       <h2>ログイン状態: {loggedInStatus ? 'ログイン済' : '未ログイン'}</h2>
-      <Registration />
-      <Login />
-      <Logout />
+      {loggedInStatus ?
+      <>
+        <Logout />
+      </>
+      :
+      <>
+        <Registration />
+        <Login />
+      </>
+      }
+      
     </>
   )
 }
