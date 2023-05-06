@@ -6,42 +6,40 @@ import { useNavigate } from "react-router-dom";
 
 import { LoginContext } from '../providers/LoginProvider'
 
-const Registration = () => {
+const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
-  const [passwordConfirmation, setPasswordConfirmation] = useState('')
 
   const { setLoggedInStatus, setUser } = useContext(LoginContext);
 
   const navigate = useNavigate(); 
 
   const handleSubmit = (event) => {
-    axios.post('http://localhost:3001/signup',
+    axios.post('http://localhost:3001/login',
       {
         user: {
           email: email,
           password: password,
-          password_confirmation: passwordConfirmation,
         }
       },
       { withCredentials: true }
     ).then(response => {
-      console.log("registration res", response)
+      console.log("login res", response)
 
-      if(response.data.status === 'created') {
+      if(response.data.logged_in) {
         setLoggedInStatus(true)
         setUser(response.data.user)
         navigate('/dashboard')
       }
     }).catch(error => {
-      console.log("registration error", error)
+      console.log("login error", error)
     })
     event.preventDefault()
   }
 
   return (
     <>
-      <p>新規登録</p>
+      <p>ログイン</p>
 
       <form onSubmit={handleSubmit}>
         <input
@@ -58,13 +56,6 @@ const Registration = () => {
           value={password}
           onChange={event => setPassword(event.target.value)}
         />
-        <input
-          type='password'
-          name='password_confirmation'
-          placeholder='確認用パスワード'
-          value={passwordConfirmation}
-          onChange={event => setPasswordConfirmation(event.target.value)}
-        />
 
         <button type="submit">登録</button>
       </form>
@@ -72,4 +63,4 @@ const Registration = () => {
   )
 }
 
-export default Registration
+export default Login
