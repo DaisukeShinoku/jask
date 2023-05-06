@@ -10,9 +10,9 @@ const Login = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const { setLoggedInStatus, setUser } = useContext(LoginContext);
+  const { setLoggedInStatus, setUser } = useContext(LoginContext)
 
-  const navigate = useNavigate(); 
+  const navigate = useNavigate()
 
   const handleSubmit = (event) => {
     axios.post('http://localhost:3001/login',
@@ -29,7 +29,7 @@ const Login = () => {
       if(response.data.logged_in) {
         setLoggedInStatus(true)
         setUser(response.data.user)
-        navigate('/dashboard')
+        navigate('/')
       }
     }).catch(error => {
       console.log("login error", error)

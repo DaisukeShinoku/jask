@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 
-import Home from './component/Home'
+import Start from './component/Start'
 import Dashboard from './component/Dashboard'
 import Test from './component/Test'
 
@@ -36,8 +36,8 @@ const App = () => {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path='/' element={<Home/>} />
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/start' element={<Start/>} />
+          <Route path='/' element={<Dashboard />} />
           <Route path='/test' element={<Test title={'This is Test'}/>} />
         </Routes>
       </BrowserRouter>

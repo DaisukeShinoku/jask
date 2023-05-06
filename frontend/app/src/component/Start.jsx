@@ -6,9 +6,9 @@ import Logout from './auth/Logout'
 
 import { LoginContext } from './providers/LoginProvider'
 
-const Home = () => {
+const Start = () => {
 
-  const { loggedInStatus } = useContext(LoginContext);
+  const { loggedInStatus } = useContext(LoginContext)
 
   return (
     <>
@@ -21,4 +21,4 @@ const Home = () => {
   )
 }
 
-export default Home
+export default Start
